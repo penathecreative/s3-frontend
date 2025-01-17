@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# S3 File Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based file management system that interfaces with AWS S3 for storing and managing files. This component provides functionality to upload files, view them in categorized lists, and download them directly from S3.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- File upload to AWS S3
+- Automatic file categorization (Original Images, Resized Images, Other Files)
+- File preview for images
+- Direct file download functionality
+- File size display
+- Real-time file list updates
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React.js (16.8+ for Hooks support)
+- AWS S3 bucket configured with appropriate permissions
+- API endpoint for file management
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository
+2. Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Update the following constants in `FileUpload.js` with your AWS S3 and API endpoints:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```javascript
+const S3_BASE_URL = "YOUR_S3_BUCKET_URL";
+const API_BASE_URL = "YOUR_API_ENDPOINT";
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Component Structure
 
-### `npm run eject`
+The component consists of:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- File upload section with file input and upload button
+- Three categorized file lists:
+  - Original Images
+  - Resized Images
+  - Other Files
+- Status message display for user feedback
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Endpoints Required
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The component expects the following API endpoints:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `GET /api/files` - Retrieves list of files from S3
+- `POST /api/upload` - Handles file upload to S3
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+import FileUpload from "./components/FileUpload";
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+function App() {
+  return (
+    <div>
+      <FileUpload />
+    </div>
+  );
+}
+```
 
-### Code Splitting
+## File Object Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Files are expected to have the following structure:
 
-### Analyzing the Bundle Size
+```javascript
+{
+  Key: string,    // File path in S3
+  Size: number    // File size in bytes
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Styling
 
-### Making a Progressive Web App
+The component uses a separate CSS file (`FileUpload.css`) for styling. Ensure this file is imported and contains the necessary styles for:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `.container`
+- `.title`
+- `.message`
+- `.upload-section`
+- `.files-section`
+- `.subtitle`
+- `.files-list`
+- `.file-item`
+- `.file-image`
+- `.file-info`
+- `.upload-button`
+- `.download-button`
 
-### Advanced Configuration
+## Error Handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The component includes error handling for:
 
-### Deployment
+- Failed file uploads
+- Failed file list fetching
+- Missing file selection
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Security Considerations
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Ensure proper CORS configuration on your S3 bucket
+- Implement appropriate authentication for API endpoints
+- Validate file types and sizes before upload
+- Use signed URLs for secure file access
