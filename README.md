@@ -45,8 +45,9 @@ A full-stack application to upload, store, and manage files in AWS S3 with real-
    npm start
 ```
 
+
 2. Add your environment variables to .env:
-```bash
+   ```bash
 AWS_ACCESS_KEY_ID=your-access-key
 AWS_SECRET_ACCESS_KEY=your-secret-key
 AWS_REGION=eu-central-1
