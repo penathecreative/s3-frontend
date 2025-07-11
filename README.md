@@ -1,111 +1,85 @@
 # 🚀 S3 File Manager
 
-A React-based file management system that interfaces with AWS S3 for storing and managing files. This component provides functionality to upload files, view them in categorized lists, and download them directly from S3.
+A full-stack application to upload, store, and manage files in AWS S3 with real-time updates. Automatically categorizes and displays original images, resized images, and other files.
 
-## Features
+---
 
-- File upload to AWS S3
-- Automatic file categorization (Original Images, Resized Images, Other Files)
-- File preview for images
-- Direct file download functionality
-- File size display
-- Real-time file list updates
+## 📁 Features
 
-## Prerequisites
+- 📤 Upload files directly to your S3 bucket
+- 📸 Auto-preview of original and resized images
+- 📂 Organized listing of file types
+- 🔁 Real-time refresh after upload
+- 🧰 Built with React (frontend) and Node.js + AWS SDK (backend)
 
-- React.js (16.8+ for Hooks support)
-- AWS S3 bucket configured with appropriate permissions
-- API endpoint for file management
+---
 
-## Installation
+## 🧪 Tech Stack
 
-1. Clone the repository
-2. Install dependencies:
+**Frontend:**
+
+- React
+- CSS Modules
+
+**Backend:**
+
+- Express.js
+- AWS SDK (S3)
+- Node.js
+- CORS + Multer middleware
+
+**Infrastructure:**
+
+- AWS S3
+- AWS Lambda (if applicable)
+- AWS Elastic Load Balancer
+
+---
+
+## 🚀 Getting Started
+
+### 🔧 Backend Setup
+
+1. Clone the backend repo:
 
 ```bash
+   git clone https://github.com/your-username/s3-backend.git
+   cd s3-backend
+   npm install
+   npm start
+```
+
+2. Add your environment variables to .env:
+
+```bash
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+AWS_REGION=eu-central-1
+S3_BUCKET=my-lambda-bucket-cf
+```
+
+---
+
+## 💻 Frontend Setup
+
+1. Clone the frontend repo:
+
+```bash
+git clone https://github.com/your-username/s3-frontend.git
+cd s3-frontend
 npm install
+npm start
 ```
 
-## Configuration
+2. The frontend is configured to call the backend via:
 
-Update the following constants in `FileUpload.js` with your AWS S3 and API endpoints:
-
-```javascript
-const S3_BASE_URL = "YOUR_S3_BUCKET_URL";
-const API_BASE_URL = "YOUR_API_ENDPOINT";
+```js
+const API_BASE_URL =
+  "http://MyCoolLoadBalancer-xxxxxxx.eu-central-1.elb.amazonaws.com";
 ```
 
-## Component Structure
+## 🖼️ File Organization on S3
 
-The component consists of:
-
-- File upload section with file input and upload button
-- Three categorized file lists:
-  - Original Images
-  - Resized Images
-  - Other Files
-- Status message display for user feedback
-
-## API Endpoints Required
-
-The component expects the following API endpoints:
-
-- `GET /api/files` - Retrieves list of files from S3
-- `POST /api/upload` - Handles file upload to S3
-
-## Usage
-
-```javascript
-import FileUpload from "./components/FileUpload";
-
-function App() {
-  return (
-    <div>
-      <FileUpload />
-    </div>
-  );
-}
-```
-
-## File Object Structure
-
-Files are expected to have the following structure:
-
-```javascript
-{
-  Key: string,    // File path in S3
-  Size: number    // File size in bytes
-}
-```
-
-## Styling
-
-The component uses a separate CSS file (`FileUpload.css`) for styling. Ensure this file is imported and contains the necessary styles for:
-
-- `.container`
-- `.title`
-- `.message`
-- `.upload-section`
-- `.files-section`
-- `.subtitle`
-- `.files-list`
-- `.file-item`
-- `.file-image`
-- `.file-info`
-- `.upload-button`
-- `.download-button`
-
-## Error Handling
-
-The component includes error handling for:
-
-- Failed file uploads
-- Failed file list fetching
-- Missing file selection
-
-## Security Considerations
-
-- Ensure proper CORS configuration on your S3 bucket
-- Implement appropriate authentication for API endpoints
-- Validate file types and sizes before upload
-- Use signed URLs for secure file access
+- original-images/ – unprocessed uploaded images
+- resized-images/ – resized/optimized versions
+- others/ – other file types (e.g. PDFs, videos)
