@@ -2,7 +2,10 @@
 
 A full-stack application to upload, store, and manage files in AWS S3 with real-time updates. Automatically categorizes and displays original images, resized images, and other files.
 
+
 ---
+
+
 
 ## 📁 Features
 
@@ -12,7 +15,10 @@ A full-stack application to upload, store, and manage files in AWS S3 with real-
 - 🔁 Real-time refresh after upload
 - 🧰 Built with React (frontend) and Node.js + AWS SDK (backend)
 
+
 ---
+
+
 
 ## 🧪 Tech Stack
 
@@ -31,7 +37,11 @@ A full-stack application to upload, store, and manage files in AWS S3 with real-
 - AWS Lambda 
 - AWS Elastic Load Balancer
 
+
+
 ---
+
+
 
 ## 🚀 Getting Started
 
@@ -43,7 +53,7 @@ A full-stack application to upload, store, and manage files in AWS S3 with real-
    cd s3-backend
    npm install
    npm start
-```
+   ```
 
 
 2. Add your environment variables to .env:
@@ -53,7 +63,11 @@ AWS_SECRET_ACCESS_KEY=your-secret-key
 AWS_REGION=eu-central-1
 S3_BUCKET=my-lambda-bucket-cf
 ```
+
+
 ---
+
+
 
 ## 💻 Frontend Setup
 1.Clone the frontend repo:
@@ -69,7 +83,10 @@ npm start
 const API_BASE_URL = "http://MyCoolLoadBalancer-xxxxxxx.eu-central-1.elb.amazonaws.com";
 ```
 
+
 ---
+
+
 
 ## 🖼️ File Organization on S3
 
