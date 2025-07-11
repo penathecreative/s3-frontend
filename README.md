@@ -2,6 +2,8 @@
 
 A full-stack application to upload, store, and manage files in AWS S3 with real-time updates. Automatically categorizes and displays original images, resized images, and other files.
 
+[![Watch the demo]](https://www.youtube.com/watch?v=oB4BOrskzjk)
+
 ---
 
 ## 📁 Features
